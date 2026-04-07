@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Clinic & Results | Lume Dental</title>
+    <meta name="description" content="View the state-of-the-art Lume Dental clinic gallery and incredible patient before and after smile transformation pictures.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header { padding: 160px 5% 80px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); text-align: center; color: white; }
+        .page-header h1 { font-size: 3.5rem; color: white; margin-bottom: 15px; }
+        .gallery-page { padding: 80px 5%; background-color: var(--bg-light); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .gallery-item { position: relative; border-radius: var(--border-radius-lg); overflow: hidden; aspect-ratio: 4/3; cursor: pointer; box-shadow: var(--shadow-soft); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 118, 110, 0.8); display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: var(--transition-smooth); }
+        .gallery-overlay i { color: var(--white); font-size: 2rem; margin-bottom: 10px; transform: translateY(20px); transition: var(--transition-smooth); }
+        .gallery-overlay span { color: var(--white); font-weight: 500; font-size: 1.1rem; transform: translateY(20px); transition: var(--transition-smooth); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-item:hover .gallery-overlay i, .gallery-item:hover .gallery-overlay span { transform: translateY(0); }
+        .section-title { margin-top: 40px; margin-bottom: 30px; }
+        
+        /* Lightbox */
+        #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; flex-direction: column; }
+        #lightbox img { max-width: 90%; max-height: 80vh; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5); }
+        #lightbox .close-btn { position: absolute; top: 30px; right: 40px; color: white; font-size: 3rem; cursor: pointer; }
+        #lightbox .caption { color: white; margin-top: 15px; font-size: 1.2rem; font-family: var(--font-body); }
+        @media (max-width: 768px) { .page-header { padding: 120px 5% 60px; } .page-header h1 { font-size: 2.5rem; } }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo">
+            <i class="fa-solid fa-tooth"></i> LUME DENTAL
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="gallery.html" style="color: var(--primary-color); font-weight: 700;">Gallery</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <a href="contact.html" class="btn btn-primary">Book Now</a>
+            <i class="fa-solid fa-bars mobile-menu-btn"></i>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header relative">
+        <h1 class="fade-in">Clinic Gallery</h1>
+        <p class="fade-in">Take a look inside our modern facility and see real results.</p>
+    </div>
+
+    <section class="gallery-page">
+        <div class="container">
+            <h2 class="section-title fade-in">Clinic & Facilities</h2>
+            <div class="gallery-grid fade-in">
+                <div class="gallery-item" onclick="openLightbox(this, 'Modern Operating Room')">
+                    <img src="images/gallery.png" alt="Clinical Room">
+                    <div class="gallery-overlay"><i class="fa-solid fa-search-plus"></i><span>View Image</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this, 'Advanced Equipment')">
+                    <img src="images/hero.png" alt="Advanced Equipment">
+                    <div class="gallery-overlay"><i class="fa-solid fa-search-plus"></i><span>View Image</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this, 'Waiting Lounge')">
+                    <img src="images/gallery.png" alt="Waiting Area">
+                    <div class="gallery-overlay"><i class="fa-solid fa-search-plus"></i><span>View Image</span></div>
+                </div>
+            </div>
+
+            <h2 class="section-title fade-in" style="margin-top: 80px;">Before & After Transformations</h2>
+            <div class="gallery-grid fade-in">
+                <div class="gallery-item" onclick="openLightbox(this, 'Veneers Before and After')">
+                    <img src="images/gallery.png" alt="Smile Makeover">
+                    <div class="gallery-overlay"><i class="fa-solid fa-images"></i><span>Veneers Smile</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this, 'Teeth Whitening Procedure')">
+                    <img src="images/hero.png" alt="Teeth Whitening">
+                    <div class="gallery-overlay"><i class="fa-solid fa-images"></i><span>Teeth Whitening</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this, 'Dental Implants Restoration')">
+                    <img src="images/gallery.png" alt="Dental Implants">
+                    <div class="gallery-overlay"><i class="fa-solid fa-images"></i><span>Dental Implants</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Element -->
+    <div id="lightbox">
+        <span class="close-btn" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+        <div id="lightbox-caption" class="caption"></div>
+    </div>
+
+    <!-- Strong CTA -->
+    <section class="cta">
+        <div class="cta-content fade-in">
+            <h2>Ready to Transform Your Smile?</h2>
+            <div class="cta-btns">
+                <a href="contact.html" class="btn btn-accent"><i class="fa-regular fa-calendar-check"></i> Book Appointment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid fade-in">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fa-solid fa-tooth"></i> LUME DENTAL
+                    </a>
+                    <p>A premier dental practice committed to delivering advanced, comfortable, and personalized dental care.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fa-solid fa-envelope"></i> care@lumedental.in</li>
+                        <li><i class="fa-solid fa-globe"></i> <a href="https://lumedental.in">www.lumedental.in</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919876543210" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Custom JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+        function openLightbox(element, caption) {
+            const imgSrc = element.querySelector('img').src;
+            document.getElementById('lightbox-img').src = imgSrc;
+            document.getElementById('lightbox-caption').innerText = caption;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
